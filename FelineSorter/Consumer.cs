@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FelineSorter.Components;
@@ -17,18 +18,21 @@ namespace FelineSorter
         private readonly WebserviceOptions _webserviceOptions;
         private readonly Func<Uri, IHttpClient> _httpClientFactory;
         private readonly IOwnerSorter _felineOwnerSorter;
+        private readonly IConsoleWriter _consoleWriter;
 
-        public Consumer(ILogger<Consumer> logger, WebserviceOptions webserviceOptions, Func<Uri, IHttpClient> httpClientFactory, IOwnerSorter felineOwnerSorter)
+        public Consumer(ILogger<Consumer> logger, WebserviceOptions webserviceOptions, Func<Uri, IHttpClient> httpClientFactory, IOwnerSorter felineOwnerSorter, IConsoleWriter consoleWriter)
         {
-            logger.ThrowIfNull(nameof(logger));
-            webserviceOptions.ThrowIfNull(nameof(webserviceOptions));
-            httpClientFactory.ThrowIfNull(nameof(httpClientFactory));
-            felineOwnerSorter.ThrowIfNull(nameof(felineOwnerSorter));
+            logger.ThrowIfArgumentNull(nameof(logger));
+            webserviceOptions.ThrowIfArgumentNull(nameof(webserviceOptions));
+            httpClientFactory.ThrowIfArgumentNull(nameof(httpClientFactory));
+            felineOwnerSorter.ThrowIfArgumentNull(nameof(felineOwnerSorter));
+            consoleWriter.ThrowIfArgumentNull(nameof(consoleWriter));
 
             _logger = logger;
             _webserviceOptions = webserviceOptions;
             _httpClientFactory = httpClientFactory;
             _felineOwnerSorter = felineOwnerSorter;
+            _consoleWriter = consoleWriter;
         }
         public async Task<bool> Consume()
         {
@@ -61,7 +65,12 @@ namespace FelineSorter
 
                     var content = await httpResponseMessage.Content.ReadAsStringAsync();
                     var owners = JsonConvert.DeserializeObject<Owner[]>(content);
-                    _felineOwnerSorter.Sort(owners);
+
+                    IEnumerable<OwnerAndCats> ownerAndCatsCollection = _felineOwnerSorter.Sort(owners);
+                    foreach (var ownerAndCats in ownerAndCatsCollection)
+                    {
+                        _consoleWriter.Write(ownerAndCats); 
+                    }
 
                     return true;
                 }

@@ -34,6 +34,7 @@ namespace FelineSorter
             containerBuilder.RegisterType<LoggerFactory>().As<ILoggerFactory>().SingleInstance();
             containerBuilder.RegisterGeneric(typeof(Logger<>)).As(typeof(ILogger<>));
             containerBuilder.RegisterType<HttpClientWrapper>().As<IHttpClient>();
+            containerBuilder.RegisterType<ConsoleWriter>().As<IConsoleWriter>().SingleInstance();
 
             // potentially register more sorters here, can rename the existing sorter to something a bit more specific later if required
             containerBuilder.RegisterType<FelineOwnerSorter>().As<IOwnerSorter>();

@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using FelineSorter.WebserviceContract;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using RuskinDantra.Extensions;
 
-namespace FelineSorter
+namespace FelineSorter.Components
 {
     [UsedImplicitly]
     internal class FelineOwnerSorter : IOwnerSorter
@@ -15,17 +15,18 @@ namespace FelineSorter
 
         public FelineOwnerSorter(ILogger<FelineOwnerSorter> logger)
         {
-            logger.ThrowIfNull(nameof(logger));
+            logger.ThrowIfArgumentNull(nameof(logger));
 
             _logger = logger;
         }
 
-        public void Sort(Owner[] owners)
+        public IEnumerable<OwnerAndCats> Sort(Owner[] owners)
         {
-            var stringBuilder = new StringBuilder();
-            var groupedByGender = owners.GroupBy(o => o.Gender).ToList();
+            var groupedByGender = owners.GroupBy(o => o.Gender.ToUpperInvariant()).ToList();
 
             _logger.LogInformation($"Found <{groupedByGender.Count}> distinct groups for 'Gender'");
+
+            var ownerAndCats = new List<OwnerAndCats>();
 
             foreach (var group in groupedByGender)
             {
@@ -34,16 +35,12 @@ namespace FelineSorter
 
                 var cats = pets.Where(p => string.Compare(p.Type, "cat", StringComparison.InvariantCultureIgnoreCase) == 0).ToList();
                 _logger.LogInformation($"Found <{cats.Count}> cats in group <{group.Key}>");
-                
-                stringBuilder.AppendLine(group.Key);
-                stringBuilder.AppendLine();
-                foreach (var cat in cats.OrderBy(p => p.Name))
-                {
-                    stringBuilder.AppendLine($"-\t{cat.Name}");
-                }
-                stringBuilder.AppendLine();
+
+                var sortedCats = cats.Where(p => !string.IsNullOrWhiteSpace(p.Name)).OrderBy(p => p.Name);
+                ownerAndCats.Add(new OwnerAndCats(group.Key, sortedCats));
             }
-            Console.WriteLine(stringBuilder.ToString());
+
+            return ownerAndCats;
         }
     }
 }
