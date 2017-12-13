@@ -1,6 +1,8 @@
 # Felinesorter Application
 Consumes a JSON webservice and displays the cats according to the gender of their owner
 
+[![Build status](https://ci.appveyor.com/api/projects/status/qnnt1f8rakhpukcu?svg=true)](https://ci.appveyor.com/project/ruskindantra/felinesorter) [![License](http://img.shields.io/:license-mit-blue.svg)](https://raw.githubusercontent.com/ruskindantra/felinesorter/master/LICENSE)
+
 ## Demonstrated Principles
 ### SOLID Programming
 1. Each class is responsible for a single piece of functionality all the way down to it's methods and variables
