@@ -5,7 +5,12 @@ VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FelineSorter", "FelineSorter\FelineSorter.csproj", "{68FBB90B-93C8-47C5-A6F2-6438C458F0CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FelineSorter.UnitTests", "FelineSorter.UnitTests\FelineSorter.UnitTests.csproj", "{E13EBD72-488A-4C24-8E17-4C8C45474AD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FelineSorter.UnitTests", "FelineSorter.UnitTests\FelineSorter.UnitTests.csproj", "{E13EBD72-488A-4C24-8E17-4C8C45474AD8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{0133558D-0F92-4DEA-9BAF-6424DE569022}"
+	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
