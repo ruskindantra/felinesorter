@@ -1,7 +1,7 @@
 # Felinesorter Application
 Consumes a JSON webservice and displays the cats according to the gender of their owner
 
-[![Build status](https://ci.appveyor.com/api/projects/status/qnnt1f8rakhpukcu?svg=true)](https://ci.appveyor.com/project/ruskindantra/felinesorter) [![License](http://img.shields.io/:license-mit-blue.svg)](https://raw.githubusercontent.com/ruskindantra/felinesorter/master/LICENSE)
+[![Build status](https://ci.appveyor.com/api/projects/status/qnnt1f8rakhpukcu?svg=true)](https://ci.appveyor.com/project/ruskindantra/felinesorter) [![License](http://img.shields.io/:license-mit-blue.svg)](https://raw.githubusercontent.com/ruskindantra/felinesorter/master/LICENSE) [![AppVeyor tests master](https://img.shields.io/appveyor/tests/ruskindantra/felinesorter/master.svg)](https://ci.appveyor.com/project/ruskindantra/felinesorter/build/tests)
 
 ## Demonstrated Principles
 ### SOLID Programming
