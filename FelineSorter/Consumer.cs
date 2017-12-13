@@ -16,9 +16,9 @@ namespace FelineSorter
         private readonly ILogger<Consumer> _logger;
         private readonly WebserviceOptions _webserviceOptions;
         private readonly Func<Uri, IHttpClient> _httpClientFactory;
-        private readonly IFelineOwnerSorter _felineOwnerSorter;
+        private readonly IOwnerSorter _felineOwnerSorter;
 
-        public Consumer(ILogger<Consumer> logger, WebserviceOptions webserviceOptions, Func<Uri, IHttpClient> httpClientFactory, IFelineOwnerSorter felineOwnerSorter)
+        public Consumer(ILogger<Consumer> logger, WebserviceOptions webserviceOptions, Func<Uri, IHttpClient> httpClientFactory, IOwnerSorter felineOwnerSorter)
         {
             logger.ThrowIfNull(nameof(logger));
             webserviceOptions.ThrowIfNull(nameof(webserviceOptions));

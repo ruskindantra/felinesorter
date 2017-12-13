@@ -36,7 +36,7 @@ namespace FelineSorter
             containerBuilder.RegisterType<HttpClientWrapper>().As<IHttpClient>();
 
             // potentially register more sorters here, can rename the existing sorter to something a bit more specific later if required
-            containerBuilder.RegisterType<FelineOwnerSorter>().As<IFelineOwnerSorter>();
+            containerBuilder.RegisterType<FelineOwnerSorter>().As<IOwnerSorter>();
             containerBuilder.RegisterInstance(webserviceOptions);
 
             var container = containerBuilder.Build();

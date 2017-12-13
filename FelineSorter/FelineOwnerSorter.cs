@@ -9,7 +9,7 @@ using RuskinDantra.Extensions;
 namespace FelineSorter
 {
     [UsedImplicitly]
-    internal class FelineOwnerSorter : IFelineOwnerSorter
+    internal class FelineOwnerSorter : IOwnerSorter
     {
         private readonly ILogger<FelineOwnerSorter> _logger;
 

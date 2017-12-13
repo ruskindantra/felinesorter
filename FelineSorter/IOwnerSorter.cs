@@ -2,7 +2,7 @@
 
 namespace FelineSorter
 {
-    public interface IFelineOwnerSorter
+    public interface IOwnerSorter
     {
         void Sort(Owner[] owners);
     }
