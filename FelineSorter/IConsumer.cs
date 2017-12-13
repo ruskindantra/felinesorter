@@ -1,7 +1,9 @@
-﻿namespace FelineSorter
+﻿using System.Threading.Tasks;
+
+namespace FelineSorter
 {
     public interface IConsumer
     {
-        void Consume();
+        Task<bool> Consume();
     }
 }
